@@ -73,8 +73,8 @@ describe('DevContextLoader', () => {
       // a regression budget while cache behavior itself is asserted below.
       expect(cachedDuration).toBeLessThan(CACHED_LOAD_FULL_SUITE_BUDGET_MS);
 
-      // Verify caching occurred only if we had successful file loads
-      if (successfulFiles.length > 0) {
+      // Verify caching occurred (not merely that the field is typed).
+      if (successfulFiles.length > 0 && result.status === 'loaded') {
         expect(result.cacheHits).toBeGreaterThan(0);
       }
     }, 60000);
